@@ -43,10 +43,11 @@ flask run
 
 ---
 
-## 🧠 Reflexion / To Do
+## 🧠 Nächste Schritte / To Do
 
 - [ ] User Datenbank implementieren
-- [ ] Datenbankstruktur ausarbeiten
+- [ ] Registrierung und Login erstellen
+- [ ] Habit Hauptseite anlegen
 
 ---
 
