@@ -1,0 +1,14 @@
+# Datenbank
+db/database.db
+
+# Developer
+run.py
+
+# Temporär
+__pycache__/
+
+# Log-Dateien
+*.log
+
+# Env Files
+.env
