@@ -45,7 +45,7 @@ flask run
 
 ## 🧠 Nächste Schritte / To Do
 
-- [ ] Login und Register form erstellen
+- [x] Login und Register form erstellen
 - [ ] User Datenbank implementieren
 - [ ] Registrierung und Login erstellen
 - [ ] Habit Hauptseite anlegen
