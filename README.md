@@ -47,7 +47,10 @@ flask run
 
 - [x] Login und Register form erstellen
 - [x] User Datenbank implementieren
-- [ ] Registrierung und Login mit Datenbank verknüpfen
+- [ ] Registrierung mit Datenbank verknüpfen
+- [ ] Login mit Datenbank verknüpfen
+- [ ] Passwörter hashen
+- [ ] Error Template erstellen
 - [ ] Habit Hauptseite anlegen
 
 ---
