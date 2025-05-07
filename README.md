@@ -47,7 +47,7 @@ flask run
 
 - [x] Login und Register form erstellen
 - [x] User Datenbank implementieren
-- [ ] Registrierung mit Datenbank verknüpfen
+- [x] Registrierung mit Datenbank verknüpfen
 - [ ] Login mit Datenbank verknüpfen
 - [ ] Passwörter hashen
 - [ ] Error Template erstellen
