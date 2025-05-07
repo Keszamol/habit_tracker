@@ -58,7 +58,7 @@ flask run
 ## 👤 Kontakt
 
 
-🔗 [LinkedIn](https://www.linkedin.com/in/celine-maloszek-458a64359/)
+🔗 [LinkedIn](https://www.linkedin.com/in/celine-maloszek/)
 
 ---
 
