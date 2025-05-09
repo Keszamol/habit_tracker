@@ -22,18 +22,26 @@ def register():
         confirm = request.form.get("confirm")
 
         if not username or not password or not confirm:
-            render_template("error.html", message="Bitte fülle alle Felder aus.")
+            return render_template("error.html", message="Bitte fülle alle Felder aus.")
         elif password != confirm:
-            render_template("error.html", message="Die Passwortbestätigung muss identisch sein.")
+            return render_template("error.html", message="Die Passwortbestätigung muss identisch sein.")
+
+        with sqlite3.connect(DATABASE) as conn:
+            cursor = conn.cursor()      
+            cursor.execute('SELECT username FROM users WHERE username=?', (username,))
+            db_username = cursor.fetchone()
+
+        if db_username:
+            return render_template("error.html", message="Username bereits vergeben.")
         else:
-            conn = sqlite3.connect(DATABASE)
-            cursor = conn.cursor()
-            cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password,))
-            conn.commit()
-            conn.close()
+            with sqlite3.connect(DATABASE) as conn:
+                cursor = conn.cursor()
+                cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password,))
+                conn.commit()
             return redirect(url_for('habits'))
+        
     return render_template("register.html")
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
     return render_template("login.html")
