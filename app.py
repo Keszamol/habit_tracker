@@ -47,6 +47,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    session.clear()
 
     if request.method == "POST":
         username = request.form.get("username")
@@ -64,6 +65,7 @@ def login():
             row = cursor.fetchone()
 
         if row and check_password_hash(row["password"], password):
+            session["user_id"] = row["id"]
             return redirect(url_for('habits'))  
         else:
             return render_template("error.html", message="Username oder Passwort ist nicht korrekt.")
