@@ -44,4 +44,28 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if not username:
+            return render_template("error.html", message="Bitte gib deinen Username an.")
+        elif not password:
+            return render_template("error.html", message="Bitte gib dein Passwort ein.")
+        
+        with sqlite3.connect(DATABASE) as conn:
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM users WHERE username=?', (username,))
+            row = cursor.fetchone()
+
+        if row:
+            if row["password"] != password:
+                return render_template("error.html", message="Passwort nicht korrekt.")
+            else:
+                return redirect(url_for('habits'))
+        else:
+            return render_template("error.html", message="Username existiert nicht.")
+
     return render_template("login.html")
