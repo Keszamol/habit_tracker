@@ -50,7 +50,7 @@ flask run
 - [x] Registrierung mit Datenbank verknüpfen
 - [x] Login mit Datenbank verknüpfen
 - [x] Error Template erstellen
-- [ ] Passwörter hashen
+- [x] Passwörter hashen
 - [ ] Habit Hauptseite anlegen
 
 ---

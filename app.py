@@ -1,6 +1,7 @@
+from flask import Flask, render_template, redirect, request, session, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import sqlite3
-from flask import Flask, render_template, request, session, redirect, url_for
 
 
 app = Flask(__name__)
@@ -26,6 +27,8 @@ def register():
         elif password != confirm:
             return render_template("error.html", message="Die Passwortbestätigung muss identisch sein.")
 
+        hashed_password = generate_password_hash(password)
+
         with sqlite3.connect(DATABASE) as conn:
             cursor = conn.cursor()      
             cursor.execute('SELECT username FROM users WHERE username=?', (username,))
@@ -36,9 +39,9 @@ def register():
         else:
             with sqlite3.connect(DATABASE) as conn:
                 cursor = conn.cursor()
-                cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password,))
+                cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, hashed_password,))
                 conn.commit()
-            return redirect(url_for('habits'))
+            return redirect(url_for('login'))
         
     return render_template("register.html")
 
@@ -60,12 +63,9 @@ def login():
             cursor.execute('SELECT * FROM users WHERE username=?', (username,))
             row = cursor.fetchone()
 
-        if row:
-            if row["password"] != password:
-                return render_template("error.html", message="Passwort nicht korrekt.")
-            else:
-                return redirect(url_for('habits'))
+        if row and check_password_hash(row["password"], password):
+            return redirect(url_for('habits'))  
         else:
-            return render_template("error.html", message="Username existiert nicht.")
+            return render_template("error.html", message="Username oder Passwort ist nicht korrekt.")
 
     return render_template("login.html")
