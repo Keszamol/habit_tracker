@@ -2,6 +2,13 @@
 
 {% block body %}
     <h1>Meine Habits</h1>
-
+    <br>
+    <form method="post">
+        <input name="name" type="text" placeholder="Habit">
+        <input name="description" type="text" placeholder="Beschreibung">
+        <input name="start" type="date">
+        <input name="interval" type="number" min="1" max="365" placeholder="Intervall(Tage)">
+        <button type="submit">Habit anlegen</button>
+    </form>
 {% endblock %}
 

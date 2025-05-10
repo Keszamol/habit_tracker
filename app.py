@@ -9,8 +9,10 @@ app.secret_key = 'dmEiud342HYPl2Eu2w5QB'
 
 DATABASE = os.path.join(os.path.dirname(__file__), 'db', 'database.db')
 
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
 def habits():
+    if not session:
+        return redirect(url_for('login'))
     return render_template("habits.html")
 
 @app.route("/register", methods=["GET", "POST"])
