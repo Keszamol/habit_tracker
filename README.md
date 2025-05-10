@@ -45,13 +45,12 @@ flask run
 
 ## 🧠 Nächste Schritte / To Do
 
-- [x] Login und Register form erstellen
-- [x] User Datenbank implementieren
-- [x] Registrierung mit Datenbank verknüpfen
+... (Zeigt nur die letzten drei Schritte an)
 - [x] Login mit Datenbank verknüpfen
 - [x] Error Template erstellen
 - [x] Passwörter hashen
 - [ ] Habit Hauptseite anlegen
+- [ ] Habit Datenbank erstellen
 
 ---
 
