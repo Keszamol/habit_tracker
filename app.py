@@ -3,7 +3,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import sqlite3
 
-
 app = Flask(__name__)
 app.secret_key = 'dmEiud342HYPl2Eu2w5QB'
 
@@ -38,11 +37,11 @@ def register():
 
         if db_username:
             return render_template("error.html", message="Username bereits vergeben.")
-        else:
+        else:            
             with sqlite3.connect(DATABASE) as conn:
                 cursor = conn.cursor()
                 cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, hashed_password,))
-                conn.commit()
+                conn.commit()   
             return redirect(url_for('login'))
         
     return render_template("register.html")
