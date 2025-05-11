@@ -46,10 +46,9 @@ flask run
 ## 🧠 Nächste Schritte / To Do
 
 ... (Zeigt nur die letzten drei Schritte an)
-- [x] Error Template erstellen
 - [x] Passwörter hashen
 - [x] Habit Hauptseite anlegen
-- [ ] Habit Datenbank erstellen
+- [x] Habit Datenbank erstellen
 - [ ] Habit mit Datenbank verknüpfen
 - [ ] Habit Conditions
 
