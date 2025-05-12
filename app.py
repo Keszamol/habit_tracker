@@ -12,6 +12,21 @@ DATABASE = os.path.join(os.path.dirname(__file__), 'db', 'database.db')
 def habits():
     if not session:
         return redirect(url_for('login'))
+    
+    if request.method == "POST":
+        habit = request.form.get("habit")
+        description = request.form.get("description")
+        date = request.form.get("date")
+        interval = request.form.get("interval")
+
+        with sqlite3.connect(DATABASE) as conn:
+            cursor = conn.cursor()
+            cursor.execute('INSERT INTO habits (habit, description, date, interval) VALUES (?, ?, ?, ?)',
+                           (habit, description, date, interval))
+            conn.commit()
+        return redirect(url_for('habits'))
+
+
     return render_template("habits.html")
 
 @app.route("/register", methods=["GET", "POST"])
