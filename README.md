@@ -46,12 +46,11 @@ flask run
 ## 🧠 Nächste Schritte / To Do
 
 ... (Zeigt nur die letzten drei Schritte an)
-- [x] Habit Datenbank erstellen
 - [x] Habit mit Datenbank verknüpfen (Insert)
 - [x] Habits auflisten
+- [x] Habit Conditions
 - [ ] Habit DELETE und UPDATE verknüpfen
-- [ ] Habit Conditions
-
+- [ ] Habit Interaktionen ermöglichen (Abhaken etc.)
 
 ---
 
