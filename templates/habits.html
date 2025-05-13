@@ -4,11 +4,31 @@
     <h1>Meine Habits</h1>
     <br>
     <form method="post">
-        <input name="habit" type="text" placeholder="Habit">
+        <input name="habit" type="text" placeholder="Habit" required>
         <input name="description" type="text" placeholder="Beschreibung">
-        <input name="date" type="date">
-        <input name="interval" type="number" min="1" max="365" placeholder="Intervall(Tage)">
+        <input name="date" type="date" required>
+        <input name="interval" type="number" min="1" max="365" placeholder="Intervall(Tage)" required>
         <button type="submit">Habit anlegen</button>
     </form>
+    
+    <table>
+        <thead>
+            <th>Habit</th>
+            <th>Beschreibung</th>
+            <th>Startdatum</th>
+            <th>Intervall (Tag)</th>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        
 {% endblock %}
 

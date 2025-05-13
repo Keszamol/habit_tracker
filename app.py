@@ -13,12 +13,25 @@ def habits():
     if not session:
         return redirect(url_for('login'))
     
+    with sqlite3.connect(DATABASE) as conn:
+        cursor = conn.cursor()
+        rows = cursor.execute("SELECT * FROM habits").fetchall() 
+
     if request.method == "POST":
         habit = request.form.get("habit")
         description = request.form.get("description")
         date = request.form.get("date")
         interval = request.form.get("interval")
 
+        if not habit or not date or not interval:
+            return render_template("error.html", message="Bitte Fülle alle Felder aus. Die Beschreibung bleibt optional.")
+
+        elif not interval.isdigit():
+            return render_template("error.html", message="Der Intervall muss eine Zahl sein.")
+        
+        elif int(interval) < 1 or int(interval) > 365:
+            return render_template("error.html", message="Der Intervall darf nicht kleiner als 1 oder größer als 365 sein.")
+        
         with sqlite3.connect(DATABASE) as conn:
             cursor = conn.cursor()
             cursor.execute('INSERT INTO habits (habit, description, date, interval) VALUES (?, ?, ?, ?)',
@@ -26,8 +39,7 @@ def habits():
             conn.commit()
         return redirect(url_for('habits'))
 
-
-    return render_template("habits.html")
+    return render_template("habits.html", rows=rows)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
